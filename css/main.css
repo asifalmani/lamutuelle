@@ -1,38 +1,49 @@
+/*------------------------------------
+	Import all SCSS files here
+-------------------------------------*/
 @import url(https://fonts.googleapis.com/css?family=Oswald);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
-li {
-  list-style-type: none;
-  color: #ffa200; }
-
-body {
-  font-size: 14px; }
-
 h1, h2, h3 {
   font-family: 'Oswald', sans-serif; }
 
 h1 {
-  color: #c40100;
-  font-size: 84px; }
+  font-size: 46px;
+  font-weight: normal;
+  color: #404040; }
+
+h2 {
+  font-size: 20px;
+  color: #cb037f;
+  font-weight: bold;
+  line-height: 163%; }
 
 p {
-  font-family: 'Open Sans', sans-serif; }
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px; }
 
-p.gray {
-  color: #888888;
-  font-size: 18px; }
+div p.gray {
+  color: #666;
+  font-size: 14px; }
 
 li {
   font-family: 'Open Sans', sans-serif;
-  font-size: 84px; }
+  font-size: 14px; }
 
 .rating-box {
-  width: 800px;
-  border: 1px solid #666;
-  padding: 50px;
+  width: 960px;
+  border: 1px solid #404040;
+  padding: 30px;
   margin: 0 auto; }
 
 .wraper {
-  width: 800px;
-  border: 1px solid #666;
-  padding: 50px;
+  width: 960px;
+  border: 1px solid #c40100;
+  padding: 30px;
   margin: 0 auto; }
+
+body {
+  font-size: 14px; }
+
+li {
+  list-style-type: none;
+  color: #000000; }

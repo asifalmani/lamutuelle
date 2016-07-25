@@ -1,22 +1,26 @@
-@import url(https://fonts.googleapis.com/css?family=Oswald);
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
-
 h1,h2,h3{
 	font-family: 'Oswald', sans-serif;
 }
-h1{
-	color: $DefaultHeadingOne;
-	font-size: $DefaultHeadingOneFontSize;
+
+h1 {
+	@include default-fontsize('h1');
 }
+
+h2{
+	@include default-fontsize('h2');
+}
+
 p{
 	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
 }
-p.gray{
+
+div p.gray{
 	color: $lightGray;
-	font-size: 18px;
+	font-size: 14px;
 }
 
 li{
 	font-family: 'Open Sans', sans-serif;
-	font-size: 84px;
+	font-size: 14px;
 }

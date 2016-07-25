@@ -1,0 +1,320 @@
+////////////////////////// mixins ////////////////////////////
+
+@mixin box-sizing($sizing: border-box) {
+	// Disable indentation Linting for vendor prefix indentation
+	// scss-lint:disable Indentation
+	-webkit-box-sizing: $sizing;
+	   -moz-box-sizing: $sizing;
+	    -ms-box-sizing: $sizing;
+	        box-sizing: $sizing;
+	// scss-lint:enable Indentation
+}
+
+@mixin border-radius($radius: 10px) {
+	// Disable indentation Linting for vendor prefix indentation
+	// scss-lint:disable Indentation
+	-webkit-border-radius: $radius;
+	   -moz-border-radius: $radius;
+	        border-radius: $radius;
+	// scss-lint:enable Indentation
+}
+
+@mixin border-radius-multiple($topleft: 10px, $topright: 10px, $bottomright: 10px, $bottomleft: 10px) {
+	-moz-border-radius: $topleft $topright $bottomright $bottomleft;
+
+	-webkit-border-top-left-radius: $topleft;
+	-webkit-border-top-right-radius: $topright;
+	-webkit-border-bottom-right-radius: $bottomright;
+	-webkit-border-bottom-left-radius: $bottomleft;
+
+	border-top-left-radius: $topleft;
+	border-top-right-radius: $topright;
+	border-bottom-right-radius: $bottomright;
+	border-bottom-left-radius: $bottomleft;
+}
+// Top Left Borders for Accordion
+@mixin border-radius-leftRight($topleft: 2px, $topright: 2px, $bottomright: 0px, $bottomleft: 0px) {
+	-moz-border-radius: $topleft $topright $bottomright $bottomleft;
+
+	-webkit-border-top-left-radius: $topleft;
+	-webkit-border-top-right-radius: $topright;
+	-webkit-border-bottom-right-radius: $bottomright;
+	-webkit-border-bottom-left-radius: $bottomleft;
+
+	border-top-left-radius: $topleft;
+	border-top-right-radius: $topright;
+	border-bottom-right-radius: $bottomright;
+	border-bottom-left-radius: $bottomleft;
+}
+
+
+
+@mixin background-linear-gradient($from, $to) {
+	background-color: $from; // Old browsers
+
+	@if $from != $to {
+		background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to)); // Chrome,Safari4+
+		background-image: -webkit-linear-gradient(top, $from, $to); // Chrome10+,Safari5.1+
+		background-image:    -moz-linear-gradient(top, $from, $to); // FF3.6+
+		background-image:     -ms-linear-gradient(top, $from, $to); // IE10+
+		background-image:      -o-linear-gradient(top, $from, $to); // Opera 11.10+
+		background-image:         linear-gradient(to bottom, $from, $to); // W3C
+		//filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$from}', endColorstr='#{$to}', GradientType=0); // IE6-9
+	} @else {
+		background-image: none;
+	}
+}
+
+@mixin box-shadow($color: rgba(0, 0, 0, 0.1), $offset-x: 1px, $offset-y: 1px, $blur-radius: 2px, $spread-radius: 0) {
+	@if $color == none {
+		-webkit-box-shadow: none;
+		   -moz-box-shadow: none;
+		        box-shadow: none;
+	} @else {
+		-webkit-box-shadow: $color $offset-x $offset-y $blur-radius $spread-radius;
+		   -moz-box-shadow: $color $offset-x $offset-y $blur-radius $spread-radius;
+		        box-shadow: $color $offset-x $offset-y $blur-radius $spread-radius;
+	}
+}
+
+//call with brackets around multiple arguments ie. @include transition((width 1s, height 1s))
+@mixin transition($value) {
+	// Disable indentation Linting for vendor prefix indentation
+	// scss-lint:disable Indentation
+	-webkit-transition: $value;
+	   -moz-transition: $value;
+	    -ms-transition: $value;
+	     -o-transition: $value;
+	        transition: $value;
+	// scss-lint:enable Indentation
+}
+
+@mixin transition-delay($value) {
+	// Disable indentation Linting for vendor prefix indentation
+	// scss-lint:disable Indentation
+	-webkit-transition-delay: $value;
+	   -moz-transition-delay: $value;
+	    -ms-transition-delay: $value;
+	     -o-transition-delay: $value;
+	        transition-delay: $value;
+	// scss-lint:enable Indentation
+}
+
+@mixin arrow-link($icon: 'link_arrow_right.png') {
+	background-image: url('#{$webRoot}/images/icons/#{$icon}');
+	background-repeat: no-repeat;
+	background-position: 0 45%;
+	padding-left: $linkPaddingLeft;
+	cursor: pointer;
+
+	&:hover,
+	&:focus {
+		text-decoration: none;
+	}
+}
+
+@mixin link-colors() {
+	a {
+		color: $linkColor;
+		cursor: pointer;
+		text-decoration: $linkDecoration;
+
+		&:hover,
+		&:focus,
+		&:active {
+			color: $linkColorHover;
+
+			@if $linkDecoration != $linkDecorationHover {
+				text-decoration: $linkDecorationHover;
+			}
+		}
+	}
+}
+
+
+//	12px / 16px
+@mixin small-fontsize() {
+	line-height: 1.3333;
+	font-size: 14px;
+}
+
+//	13px / 18px
+@mixin default-fontsize($scope: '') {
+	@if $scope == 'menu' {
+		font-size: 12px;
+		font-size: 0.75rem;
+		line-height: 1.3333;
+	} @else if $scope == 'sidebar' {
+		font-size: 12px;
+		font-size: 0.75rem;
+		line-height: 1.3333;
+	} @else if $scope == 'tabs' {
+		font-size: 14px;
+		font-size: 0.875rem;
+		line-height: 186%;
+		color: #fff;
+	} @else if $scope == 'abstract' {
+		font-size: 18px;
+		line-height: 167%;
+		color: #6A625A;
+	} @else if $scope == 'caption' {
+		font-size: 12px;
+		font-size: 0.75rem;
+		line-height: 117%;
+		color: #96918B;
+	} @else if $scope == 'footnote' {
+		font-size: 12px;
+		font-size: 0.75rem;
+		line-height: 117%;
+		color: #96918B;
+	} @else if $scope == 'thead' {
+		font-size: 12px;
+		font-size: 0.75rem;
+		line-height: 1.3846;
+	} @else if $scope == 'table' {
+		font-size: 12px;
+		font-size: 0.75rem;
+		line-height: 1.3636;
+	} @else if $scope == 'h1' {
+		font-size: 46px;
+		font-weight: normal;
+		color: $DefaultHeadingOne;
+    } @else if $scope == 'h2' {
+		font-size: $DefaultHeadingTwoFontSize;
+		color: $DefaultHeadingTwo;
+		font-weight: bold;
+		line-height: 163%;
+	} @else if $scope == 'h3' {
+		font-size: 14px;
+		font-size: 0.875rem;
+		line-height: 186%;
+		color: #6A625A;
+	}
+	@else if $scope == 'legend' {
+		font-size: 14px;
+		font-size: 0.875rem;
+		line-height: 186%;
+		color: #6A625A !important;
+		opacity: 100%
+	}
+	 @else {
+		font-size: 22px;
+		font-size: 0.8125rem;
+		line-height: 1.3846;
+	}
+}
+
+@mixin clearfix() {
+	&::after {
+		visibility: hidden;
+		display: block;
+		font-size: 0;
+		content: ' ';
+		clear: both;
+		height: 0;
+	}
+
+	zoom: 1; //ie fix. Does not validate, but the spec says UAs must ignore unknown properties, so fuck it.
+}
+
+@mixin submitButton() {
+	margin: 5px 5px 5px 0;
+	padding: 4px 15px;
+	color: $primaryButtonColor;
+	/*@include background-linear-gradient($primaryButtonBackgroundTop, $primaryButtonBackgroundBottom);
+	background-position: 0% 0%;*/
+	background: $primaryButtonBackgroundColor;
+	border: $primaryButtonBorder;
+	@include border-radius($primaryButtonBorderRadius);
+	font-weight: normal;
+	line-height: normal;
+	cursor: pointer;
+	/*float: left;*/
+	overflow: visible; //ie fix
+	width: auto; //ie fix
+
+	// Disable indentation Linting for vendor prefix indentation
+	// scss-lint:disable Indentation
+	-webkit-box-sizing: content-box;
+	   -moz-box-sizing: content-box;
+	        box-sizing: content-box;
+	// scss-lint:enable Indentation
+
+	&:hover,
+	&:focus {
+		color: $primaryButtonColorHover;
+		/*@include background-linear-gradient($primaryButtonBackgroundTopHover, $primaryButtonBackgroundBottomHover);*/
+		/*background-color: $subnav-active  !important;*/
+		/*background-color: $subnav-active;*/
+		background-color: $primaryButtonBackgroundColorHover;
+		text-decoration: none;
+		/*opacity: 1;*/
+	}
+}
+
+@mixin secondaryButton() {
+	color: $secondaryButtonColor;
+	@include background-linear-gradient($secondaryButtonBackgroundTop, $secondaryButtonBackgroundBottom);
+	border: $secondaryButtonBorder;
+
+	@if $secondaryButtonBorderRadius != $primaryButtonBorderRadius {
+		@include border-radius($secondaryButtonBorderRadius);
+	}
+
+	&:hover,
+	&:focus {
+		color: $secondaryButtonColorHover;
+		@include background-linear-gradient($secondaryButtonBackgroundTopHover, $secondaryButtonBackgroundBottomHover);
+	}
+}
+
+@mixin linkWithButtonDimensions() {
+	float: left;
+	margin: 5px 5px 5px 15px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	line-height: normal;
+}
+
+@mixin placeholder($color: #a9a9a9, $font-style: normal) {
+	::-webkit-input-placeholder {
+		color: $color;
+		font-style: $font-style;
+	}
+
+	::-moz-placeholder {
+		color: $color;
+		font-style: $font-style;
+	}
+
+	.placeholder {
+		color: $color;
+		font-style: $font-style;
+	}
+}
+
+@mixin buttonBackgroundAlternative() {
+	@if $linkButtonBackground != $linkButtonBackgroundAlternative {
+		.link_button {
+			background-color: $linkButtonBackgroundAlternative;
+
+			&:hover {
+				background-color: $linkButtonBackgroundHoverAlternative;
+			}
+		}
+
+		.selected > .link_button {
+			background-color: $linkButtonBackgroundSelected;
+		}
+
+		.icon_link:hover,
+		.inline_icon:hover {
+			.link_button { background-color: $linkButtonBackgroundHoverAlternative; }
+		}
+
+		.disabled .link_button,
+		.disabled:hover .link_button {
+			background-color: $linkButtonBackgroundDisabledAlternative;
+		}
+	}
+}

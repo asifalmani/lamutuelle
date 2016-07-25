@@ -8,9 +8,9 @@ gulp.task('styles', function(){
 	gulp.src('./scss/main.scss')
 	.pipe(sass())
 	.pipe(gulp.dest('./css'))
-	.pipe(minifyCss())
-	.pipe(rename({extname: '.min.css'}))
-	.pipe(gulp.dest('./css'))
+	// .pipe(minifyCss())
+	// .pipe(rename({extname: '.min.css'}))
+	// .pipe(gulp.dest('./css'))
 	.pipe(browserSync.reload({stream:true}))
 });
 
